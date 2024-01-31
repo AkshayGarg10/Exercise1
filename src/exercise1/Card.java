@@ -1,5 +1,7 @@
 package exercise1;
 
+import java.util.Objects;
+
 /**
  * A class that models playing card Objects. Cards have 
  * a value (note that Ace = 1, Jack = 11, Queen = 12, King = 13)
@@ -8,14 +10,40 @@ package exercise1;
  * This code is to be used in ICE1. When you create your own branch,
  * add your name as a modifier.
  * @author dancye
- * @author Paul Bonenfant May 2020
+ * @author Akshat Garg Jan 31
  */
 public class Card {
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Card other = (Card) obj;
+        if (this.value != other.value) {
+            return false;
+        }
+        return Objects.equals(this.suit, other.suit);
+    }
+
+    
 
    private String suit; //clubs, spades, diamonds, hearts
    private int value;//1-13
 
-   public static final String [] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"};
+   public static final String [] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"}; 
     /**
      * @return the suit
      */
@@ -43,4 +71,5 @@ public class Card {
     public void setValue(int value) {
         this.value = value;
     }  
+    
 }
